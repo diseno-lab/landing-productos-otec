@@ -6,6 +6,9 @@
 <title>Gestión Global Capacita · Productos digitales</title>
 <meta name="description" content="Cursos e-learning, cápsulas de video, motion graphics, grabación en terreno, charlas y podcast para capacitación.">
 <link rel="icon" href="assets/logo-ggc-claro.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap">
 <style>
   :root{
     --bg:#070b14; --ink:#f3efe6; --muted:#a9b2c3;
@@ -20,7 +23,7 @@
   /* sin barra de desplazamiento visible: la navegación usa los puntos laterales, la barra de progreso y el teclado */
   html{scrollbar-width:none;-ms-overflow-style:none}
   html::-webkit-scrollbar,body::-webkit-scrollbar,dialog::-webkit-scrollbar{width:0;height:0;display:none}
-  body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);font-family:"Roboto",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-weight:400;line-height:1.55;overflow-x:hidden}
   a{color:inherit}
 
   /* ---------- Fondo único y continuo (sin cortes entre secciones) ---------- */
@@ -237,6 +240,13 @@
     .reveal{opacity:1;transform:none}
   }
   :focus-visible{outline:2px solid var(--blue2);outline-offset:3px}
+  /* ---------- Tipografía Roboto: negrita 700, regular 400, light 300 y cursiva ---------- */
+  h1,h2,b,strong,.btn,.v-demo .demo-copy strong{font-weight:700}
+  .blue,.hl{font-style:italic;font-weight:300}
+  .lead,.scroll-hint,.v-demo .demo-copy small,.cc,.tc{font-weight:300}
+  .eyebrow,.tag,ul.feats li,.chips a,.chip,.demo-bar,nav.dots a::after{font-weight:400}
+  .eyebrow,.tag{font-style:italic}
+  button,input,select,textarea{font-family:inherit}
 </style>
 </head>
 <body>
