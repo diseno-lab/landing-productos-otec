@@ -3,12 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>[NOMBRE OTEC] · Productos digitales</title>
+<title>Gestión Global Capacita · Productos digitales</title>
 <meta name="description" content="Cursos e-learning, cápsulas de video, motion graphics, grabación en terreno, charlas y podcast para capacitación.">
+<link rel="icon" href="assets/logo-ggc-claro.svg">
 <style>
   :root{
-    --bg:#0b0d12; --ink:#f3efe6; --muted:#a9adb8;
-    --gold:#d8b25a; --gold2:#f1d48a; --line:rgba(216,178,90,.28);
+    --bg:#070b14; --ink:#f3efe6; --muted:#a9b2c3;
+    --gold:#d8b25a; --gold2:#f1d48a;
+    --blue:#6e8cb1; --blue2:#8fb0dc; --navy:#0c1a33;
+    --line:rgba(143,176,220,.28);
+    --sc:58,109,181; --sn:58,109,181;            /* colores del fondo, los actualiza el script */
     --ease:cubic-bezier(.22,.61,.36,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -16,67 +20,82 @@
   body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
   a{color:inherit}
 
-  /* ---------- Cabecera ---------- */
-  header{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,4vw,48px);
-    background:linear-gradient(to bottom,rgba(11,13,18,.88),rgba(11,13,18,0));pointer-events:none}
-  header>*{pointer-events:auto}
-  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;letter-spacing:.04em}
-  .brand-mark{width:38px;height:38px;border-radius:10px;border:1.5px dashed var(--gold);display:grid;place-items:center;font-size:.6rem;color:var(--gold)}
-  .cta-top{border:1px solid var(--gold);color:var(--gold2);padding:9px 18px;border-radius:999px;text-decoration:none;font-size:.9rem;transition:background .3s var(--ease),color .3s}
-  .cta-top:hover,.cta-top:focus-visible{background:var(--gold);color:#16130b}
-  .progress{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:50;width:0}
+  /* ---------- Fondo único y continuo (sin cortes entre secciones) ---------- */
+  #scene{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;
+    background:
+      radial-gradient(80% 70% at 78% 30%,rgba(var(--sc),.30),transparent 70%),
+      radial-gradient(70% 65% at 12% 88%,rgba(var(--sn),.22),transparent 70%),
+      linear-gradient(170deg,#0b1730 0%,#070b14 60%,#05070d 100%)}
+  #scene .orb{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform}
+  #scene .o1{width:52vmax;height:52vmax;left:45%;top:-10%;background:rgba(var(--sc),.38)}
+  #scene .o2{width:44vmax;height:44vmax;left:-15%;top:45%;background:rgba(var(--sn),.30)}
+  #scene .o3{width:30vmax;height:30vmax;left:30%;top:60%;background:rgba(110,140,177,.22)}
+  #scene .stars{position:absolute;inset:0;will-change:background-position}
+  #scene .far{background-image:radial-gradient(rgba(220,232,255,.55) .8px,transparent 1.3px);background-size:90px 90px;opacity:.35}
+  #scene .mid{background-image:radial-gradient(rgba(220,232,255,.7) 1.2px,transparent 1.8px);background-size:210px 170px;opacity:.35}
+  #scene .near{background-image:radial-gradient(rgba(var(--sc),.9) 2px,transparent 3px);background-size:380px 300px;opacity:.45}
+  #scene .ring{position:absolute;border-radius:50%;border:1px solid rgba(143,176,220,.16);will-change:transform}
+  #scene .ring.r1{width:70vmax;height:70vmax;left:55%;top:5%}
+  #scene .ring.r2{width:46vmax;height:46vmax;left:-12%;top:40%}
+  #scene .vignette{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(3,5,10,.65))}
 
-  /* ---------- Navegación vertical ---------- */
-  nav.dots{position:fixed;right:clamp(10px,2.4vw,32px);top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:16px}
-  nav.dots .rail{position:absolute;left:50%;top:7px;bottom:7px;width:1px;background:var(--line);z-index:-1}
-  nav.dots a{position:relative;display:block;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--muted);background:var(--bg);transition:all .35s var(--ease)}
-  nav.dots a::after{content:attr(data-label);position:absolute;right:26px;top:50%;transform:translate(8px,-50%);white-space:nowrap;font-size:.8rem;
-    background:rgba(18,22,34,.94);border:1px solid var(--line);padding:4px 10px;border-radius:6px;opacity:0;pointer-events:none;transition:all .3s var(--ease)}
-  nav.dots a:hover::after,nav.dots a:focus-visible::after{opacity:1;transform:translate(0,-50%)}
-  nav.dots a.active{background:var(--dot,var(--gold));border-color:var(--dot,var(--gold));box-shadow:0 0 14px var(--dot,var(--gold));transform:scale(1.25)}
+  /* ---------- Cabecera azulada ---------- */
+  header{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(18px,4vw,48px);
+    background:linear-gradient(to bottom,rgba(12,26,51,.92),rgba(12,26,51,.55) 70%,rgba(12,26,51,0));transition:background .4s var(--ease),box-shadow .4s}
+  header.solid{background:rgba(12,26,51,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:center;text-decoration:none}
+  .brand img{height:clamp(30px,4vw,40px);width:auto;display:block}
+  .cta-top{border:1px solid var(--blue2);color:#dbe7f7;padding:9px 18px;border-radius:999px;text-decoration:none;font-size:.9rem;transition:background .3s var(--ease),color .3s}
+  .cta-top:hover,.cta-top:focus-visible{background:var(--blue2);color:#0c1a33}
+  .progress{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue2),var(--gold2));z-index:50;width:0}
 
-  /* ---------- Secciones ---------- */
-  section{position:relative;min-height:100vh;min-height:100svh;scroll-snap-align:start;overflow:hidden;display:flex;align-items:center;isolation:isolate;--c:var(--gold)}
-  .layer{position:absolute;inset:-15% -5%;z-index:-1;will-change:transform;pointer-events:none}
+  /* ---------- Navegación vertical con nombres sutiles ---------- */
+  nav.dots{position:fixed;right:clamp(10px,2.4vw,32px);top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:16px;padding:10px 0 10px 170px}
+  nav.dots .rail{position:absolute;right:6.5px;top:17px;bottom:17px;width:1px;background:var(--line);z-index:-1}
+  nav.dots a{position:relative;display:block;width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(169,178,195,.7);background:var(--bg);transition:all .35s var(--ease);text-decoration:none}
+  nav.dots a::after{content:attr(data-label);position:absolute;right:24px;top:50%;transform:translate(8px,-50%);white-space:nowrap;
+    font-size:.74rem;letter-spacing:.06em;color:var(--ink);text-shadow:0 1px 10px rgba(0,0,0,.9);opacity:0;pointer-events:none;
+    transition:opacity .45s var(--ease),transform .45s var(--ease),color .3s}
+  nav.dots:hover a::after,nav.dots:focus-within a::after{opacity:.32;transform:translate(0,-50%)}
+  nav.dots a:hover::after,nav.dots a:focus-visible::after{opacity:.95}
+  nav.dots:hover a.active::after,nav.dots:focus-within a.active::after{opacity:.8;color:var(--dot,var(--blue2))}
+  nav.dots a:hover{border-color:var(--ink)}
+  nav.dots a.active{background:var(--dot,var(--blue2));border-color:var(--dot,var(--blue2));box-shadow:0 0 14px var(--dot,var(--blue2));transform:scale(1.25)}
+
+  /* ---------- Secciones (transparentes: el fondo es compartido) ---------- */
+  section{position:relative;min-height:100vh;min-height:100svh;scroll-snap-align:start;display:flex;align-items:center;--c:var(--blue2)}
   .content{width:min(1180px,100%);margin:0 auto;padding:110px clamp(22px,6vw,90px) 80px}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold2);text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;margin-bottom:18px}
-  .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--blue2);text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;margin-bottom:18px}
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--blue2)}
   h1{font-size:clamp(2.4rem,6vw,5rem);line-height:1.02;letter-spacing:-.02em;max-width:14ch}
   h2{font-size:clamp(2rem,4.6vw,3.8rem);line-height:1.05;letter-spacing:-.015em;max-width:16ch}
   .lead{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--muted);max-width:54ch;margin-top:20px}
-  .gold{background:linear-gradient(100deg,var(--gold),var(--gold2) 50%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .blue{background:linear-gradient(100deg,var(--blue2),#cfe0f7 50%,var(--blue2));-webkit-background-clip:text;background-clip:text;color:transparent}
   .hl{color:var(--c);text-shadow:0 0 28px color-mix(in srgb,var(--c) 45%,transparent)}
 
   .btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
   .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:600;
-    background:linear-gradient(180deg,#232838,#151927);border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 0 #07080c,0 10px 24px rgba(0,0,0,.45);
+    background:linear-gradient(180deg,#22314f,#141f36);border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 0 #070b14,0 10px 24px rgba(0,0,0,.45);
     transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
   .btn:hover{transform:translateY(-2px)}
-  .btn:active{transform:translateY(4px);box-shadow:0 2px 0 #07080c,0 4px 10px rgba(0,0,0,.4)}
-  .btn.primary{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#1b160a;box-shadow:0 6px 0 #7d6327,0 10px 24px rgba(216,178,90,.25)}
+  .btn:active{transform:translateY(4px);box-shadow:0 2px 0 #070b14,0 4px 10px rgba(0,0,0,.4)}
+  .btn.primary{background:linear-gradient(180deg,#a9c6ec,var(--blue));color:#0c1a33;box-shadow:0 6px 0 #34506f,0 10px 24px rgba(110,140,177,.3)}
 
-  /* Fondos abstractos propios por sección: el color de cada producto cambia el ambiente */
-  .bg{background:radial-gradient(70% 60% at var(--gx,85%) 45%,color-mix(in srgb,var(--c) 30%,transparent),transparent 70%),
-                 linear-gradient(160deg,color-mix(in srgb,var(--c) 9%,#0b0d12),#0b0d12 70%)}
-  .grid-dots{background-image:radial-gradient(color-mix(in srgb,var(--c) 70%,#fff) 1px,transparent 1.5px);background-size:46px 46px;opacity:.16;
-    -webkit-mask-image:radial-gradient(60% 55% at var(--gx,70%) 45%,#000,transparent);mask-image:radial-gradient(60% 55% at var(--gx,70%) 45%,#000,transparent)}
-  .ring-bg{inset:auto;width:600px;height:600px;border-radius:50%;border:1px solid color-mix(in srgb,var(--c) 35%,transparent);top:12%}
-
-  /* ---------- Hero ---------- */
+  /* ---------- Hero / banner azulado ---------- */
   .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
   .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;max-width:640px}
-  .chips a{--c:var(--gold);text-decoration:none;font-size:.88rem;padding:8px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--c) 55%,transparent);
-    background:color-mix(in srgb,var(--c) 12%,transparent);transition:background .3s var(--ease),transform .3s var(--ease)}
+  .chips a{text-decoration:none;font-size:.88rem;padding:8px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--c) 55%,transparent);
+    background:color-mix(in srgb,var(--c) 12%,rgba(7,11,20,.4));transition:background .3s var(--ease),transform .3s var(--ease)}
   .chips a:hover,.chips a:focus-visible{background:color-mix(in srgb,var(--c) 30%,transparent);transform:translateY(-2px)}
   .orbit{position:relative;aspect-ratio:1;width:100%;max-width:400px;justify-self:center}
-  .orbit .core{position:absolute;inset:32%;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold2),var(--gold) 45%,#6a5320);box-shadow:0 0 80px rgba(216,178,90,.45)}
+  .orbit .core{position:absolute;inset:32%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d6e5fa,var(--blue2) 40%,#2a4870 100%);box-shadow:0 0 90px rgba(143,176,220,.5)}
   .orbit .ring{position:absolute;border-radius:50%;border:1px solid var(--line);animation:spin 50s linear infinite}
   .orbit .ring i{position:absolute;width:12px;height:12px;margin:-6px;border-radius:50%;background:var(--c);box-shadow:0 0 16px var(--c)}
   .orbit .ring.r2{animation-direction:reverse;animation-duration:70s}
   @keyframes spin{to{transform:rotate(360deg)}}
   .scroll-hint{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none}
   .scroll-hint span{width:22px;height:36px;border:1.5px solid var(--muted);border-radius:12px;position:relative}
-  .scroll-hint span::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--gold2);animation:wheel 1.8s var(--ease) infinite}
+  .scroll-hint span::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--blue2);animation:wheel 1.8s var(--ease) infinite}
   @keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
 
   /* ---------- Producto ---------- */
@@ -86,14 +105,17 @@
     color:color-mix(in srgb,var(--c) 55%,#fff);background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 45%,transparent)}
   ul.feats{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin-top:26px}
   ul.feats li{display:flex;gap:10px;align-items:flex-start;font-size:.96rem}
-  svg.ic{flex:none;width:20px;height:20px;margin-top:2px;fill:none;stroke:var(--gold2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(241,212,138,.45))}
+  svg.ic{flex:none;width:20px;height:20px;margin-top:2px;fill:none;stroke:color-mix(in srgb,var(--c) 45%,#fff);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px color-mix(in srgb,var(--c) 60%,transparent))}
 
   .visual{position:relative;min-height:340px}
-  .card{position:absolute;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);
+  .card{position:absolute;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);
     backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 60px rgba(0,0,0,.45);will-change:transform}
   .main{inset:8% 6% 14% 4%;overflow:hidden}
   .chip{padding:11px 15px;font-size:.84rem;display:flex;align-items:center;gap:9px}
   .c1{right:0;top:0}.c2{left:-2%;bottom:2%}
+  .float{position:absolute;border-radius:50%;pointer-events:none;will-change:transform;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--c) 70%,#fff),var(--c) 55%,transparent 72%);opacity:.75}
+  .float.f1{width:46px;height:46px;right:-4%;bottom:22%}
+  .float.f2{width:22px;height:22px;left:8%;top:-4%}
   /* e-learning */
   .v-screen{padding:16px;display:flex;flex-direction:column;gap:12px}
   .v-screen .bar{display:flex;gap:6px}.v-screen .bar b{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
@@ -101,23 +123,23 @@
   .v-screen .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;flex:1}
   .v-screen .row div{border-radius:10px;background:color-mix(in srgb,var(--c) 20%,transparent);border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
   .v-screen .audio{height:8px;border-radius:4px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
-  .v-screen .audio::after{content:"";position:absolute;inset:0 45% 0 0;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+  .v-screen .audio::after{content:"";position:absolute;inset:0 45% 0 0;background:linear-gradient(90deg,var(--blue),var(--blue2))}
   /* video / podcast video */
-  .glow::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 30% 30%,color-mix(in srgb,var(--c) 40%,transparent),transparent),radial-gradient(50% 60% at 80% 80%,rgba(216,178,90,.22),transparent)}
+  .glow::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 30% 30%,color-mix(in srgb,var(--c) 40%,transparent),transparent),radial-gradient(50% 60% at 80% 80%,rgba(143,176,220,.2),transparent)}
   .center{display:grid;place-items:center}
   .play{position:relative;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);display:grid;place-items:center}
   .play::after{content:"";margin-left:6px;border-left:22px solid var(--ink);border-top:13px solid transparent;border-bottom:13px solid transparent}
   .cc{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:rgba(0,0,0,.6);padding:4px 12px;border-radius:6px;font-size:.78rem;white-space:nowrap}
-  .vertical{left:0;bottom:0;width:28%;aspect-ratio:9/16;max-height:62%;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 40%,transparent),rgba(216,178,90,.2))}
+  .vertical{left:0;bottom:0;width:28%;aspect-ratio:9/16;max-height:62%;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 40%,transparent),rgba(143,176,220,.2))}
   /* motion */
   .shape{position:absolute;animation:float 7s ease-in-out infinite}
   .shape.s1{width:90px;height:90px;border-radius:50%;background:var(--c);left:14%;top:18%;box-shadow:0 0 40px var(--c)}
-  .shape.s2{width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:86px solid var(--gold);right:16%;top:24%;animation-delay:-2s}
-  .shape.s3{width:80px;height:80px;border-radius:14px;border:3px solid var(--gold2);left:42%;bottom:16%;animation:float 7s ease-in-out infinite,spin 14s linear infinite;animation-delay:-4s}
+  .shape.s2{width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:86px solid var(--blue2);right:16%;top:24%;animation-delay:-2s}
+  .shape.s3{width:80px;height:80px;border-radius:14px;border:3px solid #dbe7f7;left:42%;bottom:16%;animation:float 7s ease-in-out infinite,spin 14s linear infinite;animation-delay:-4s}
   .shape.s4{left:8%;right:8%;bottom:10%;height:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:none}
   @keyframes float{50%{translate:0 -18px}}
-  .keys{position:absolute;left:16px;right:16px;top:14px;display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted)}
-  .keys i{width:9px;height:9px;transform:rotate(45deg);background:var(--gold2)}
+  .keys{position:absolute;left:16px;right:16px;top:14px;display:flex;justify-content:space-between}
+  .keys i{width:9px;height:9px;transform:rotate(45deg);background:var(--blue2)}
   /* terreno */
   .v-rec{background:linear-gradient(170deg,color-mix(in srgb,var(--c) 22%,#11151d),#0d1016)}
   .v-rec::before{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(170deg,color-mix(in srgb,var(--c) 30%,transparent),transparent);clip-path:polygon(0 40%,25% 10%,48% 45%,70% 0,100% 35%,100% 100%,0 100%)}
@@ -142,17 +164,22 @@
   .live{position:absolute;left:16px;top:14px;font-size:.72rem;letter-spacing:.14em;background:#e8483b;padding:3px 9px;border-radius:5px}
   /* audio */
   .wave{position:absolute;left:8%;right:8%;top:22%;bottom:30%;display:flex;align-items:center;gap:5px}
-  .wave b{flex:1;border-radius:3px;background:linear-gradient(180deg,var(--c),var(--gold));height:20%;animation:eq 1.4s ease-in-out infinite}
+  .wave b{flex:1;border-radius:3px;background:linear-gradient(180deg,var(--c),var(--blue2));height:20%;animation:eq 1.4s ease-in-out infinite}
   @keyframes eq{50%{height:var(--h,80%)}}
   .scrub{position:absolute;left:8%;right:8%;bottom:16%;height:6px;border-radius:3px;background:rgba(255,255,255,.12)}
-  .scrub::after{content:"";position:absolute;inset:0 62% 0 0;border-radius:3px;background:var(--gold2)}
+  .scrub::after{content:"";position:absolute;inset:0 62% 0 0;border-radius:3px;background:var(--blue2)}
 
-  /* ---------- Contacto ---------- */
-  #contacto .content{text-align:center}
+  /* ---------- Contacto + footer azulado ---------- */
+  #contacto{flex-direction:column;justify-content:center}
+  #contacto .content{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center}
   #contacto h2,#contacto .lead{margin-left:auto;margin-right:auto}
   #contacto .btns{justify-content:center}
-  footer{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-size:.8rem;color:var(--muted)}
-  .pend{color:var(--gold2);border-bottom:1px dashed var(--gold)}
+  footer{width:100%;background:linear-gradient(180deg,rgba(12,26,51,.55),rgba(12,26,51,.95));border-top:1px solid var(--line);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  footer .in{width:min(1180px,100%);margin:0 auto;padding:22px clamp(22px,6vw,90px);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.82rem;color:#b9c8dd}
+  footer img{height:30px;width:auto;display:block}
+  .pend{color:var(--blue2);border-bottom:1px dashed var(--blue2)}
+  .btn.primary .pend{color:#0c1a33;border-color:#0c1a33}
 
   /* ---------- Revelado ---------- */
   .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
@@ -167,28 +194,38 @@
     .orbit{display:none}
     .visual{min-height:240px}
     ul.feats{grid-template-columns:1fr;gap:9px}
-    nav.dots{gap:12px}
+    nav.dots{gap:12px;padding-left:0}
     nav.dots a{width:11px;height:11px}
-    nav.dots a::after{display:none}
+    nav.dots .rail{right:5px}
     .cta-top{display:none}
     .content{padding-right:44px}
+    footer .in{justify-content:center;text-align:center}
   }
+  @media (hover:none){ nav.dots a::after{display:none} }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{animation:none!important;transition:none!important}
     .reveal{opacity:1;transform:none}
   }
-  :focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+  :focus-visible{outline:2px solid var(--blue2);outline-offset:3px}
 </style>
 </head>
 <body>
+<div id="scene" aria-hidden="true">
+  <div class="orb o1" data-orb="1"></div>
+  <div class="orb o2" data-orb="2"></div>
+  <div class="orb o3" data-orb="3"></div>
+  <div class="ring r1" data-ring="1"></div>
+  <div class="ring r2" data-ring="2"></div>
+  <div class="stars far" data-star="0.06"></div>
+  <div class="stars mid" data-star="0.18"></div>
+  <div class="stars near" data-star="0.42"></div>
+  <div class="vignette"></div>
+</div>
 <div class="progress" aria-hidden="true"></div>
 
 <header>
-  <a class="brand" href="#inicio" aria-label="Inicio">
-    <span class="brand-mark">LOGO</span>
-    <span class="pend">[NOMBRE OTEC]</span>
-  </a>
+  <a class="brand" href="#inicio"><img src="assets/logo-ggc-claro.svg" alt="Gestión Global Capacita"></a>
   <a class="cta-top" href="#contacto">Contactar</a>
 </header>
 
@@ -196,20 +233,20 @@
 
 <main id="main">
   <!-- INICIO -->
-  <section id="inicio" data-label="Inicio">
-    <div class="layer bg" data-speed="0.25" style="--gx:78%"></div>
-    <div class="layer grid-dots" data-speed="0.5"></div>
+  <section id="inicio" data-label="Inicio" data-bg="#3a6db5" style="--c:#8fb0dc">
     <div class="content hero-grid">
       <div>
         <p class="eyebrow reveal">Productos digitales</p>
-        <h1 class="reveal d1">Capacitación que se <span class="gold">ve, se escucha</span> y se recorre.</h1>
+        <h1 class="reveal d1">Capacitación que se <span class="blue">ve, se escucha</span> y se recorre.</h1>
         <p class="lead reveal d2">Cursos e-learning, video, motion graphics, charlas y podcast para formar a tus equipos.</p>
         <nav class="chips reveal d3" aria-label="Productos" id="chips"></nav>
       </div>
-      <div class="orbit reveal d2" aria-hidden="true">
-        <div class="ring" style="inset:2%" id="ring1"></div>
-        <div class="ring r2" style="inset:16%" id="ring2"></div>
-        <div class="core"></div>
+      <div class="reveal d2" aria-hidden="true">
+        <div class="orbit" data-speed="-0.25" data-depth="1.2">
+          <div class="ring" style="inset:2%" id="ring1"></div>
+          <div class="ring r2" style="inset:16%" id="ring2"></div>
+          <div class="core"></div>
+        </div>
       </div>
     </div>
     <a class="scroll-hint" href="#p-elearning" aria-label="Bajar al primer producto"><span></span>Desliza</a>
@@ -218,18 +255,22 @@
   <!-- Las secciones de producto se generan desde PRODUCTOS (script) -->
 
   <!-- CONTACTO -->
-  <section id="contacto" data-label="Contacto">
-    <div class="layer bg" data-speed="0.3" style="--gx:50%"></div>
+  <section id="contacto" data-label="Contacto" data-bg="#2f5ea3" style="--c:#8fb0dc">
     <div class="content">
       <p class="eyebrow reveal" style="justify-content:center">Conversemos</p>
-      <h2 class="reveal d1">¿Qué necesita aprender <span class="gold">tu equipo</span>?</h2>
+      <h2 class="reveal d1">¿Qué necesita aprender <span class="blue">tu equipo</span>?</h2>
       <p class="lead reveal d2">Cuéntanos el tema y el público, y te proponemos el formato más adecuado.</p>
       <div class="btns reveal d3">
         <a class="btn primary" href="#" data-pending>Escribir <span class="pend">[CORREO]</span></a>
         <a class="btn" href="#" data-pending>WhatsApp <span class="pend">[NÚMERO]</span></a>
       </div>
     </div>
-    <footer>© <span id="y"></span> <span class="pend">[NOMBRE OTEC]</span></footer>
+    <footer>
+      <div class="in">
+        <img src="assets/logo-ggc-claro.svg" alt="Gestión Global Capacita">
+        <span>© <span id="y"></span> Gestión Global Capacita</span>
+      </div>
+    </footer>
   </section>
 </main>
 
@@ -306,15 +347,15 @@ const IC = {
 const icon = k => `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${IC[k]||''}</svg>`;
 const micSvg = '<svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/></svg>';
 
-/* Visuales de cada producto (formas propias, sin fotografías) */
+/* Visuales de cada producto (formas propias, sin fotografías). data-speed = parallax de scroll, data-depth = parallax de mouse */
 const VISUAL = {
-  screen:()=>`<div class="card main v-screen" data-speed="-0.08"><div class="bar"><b></b><b></b><b></b></div><div class="ttl"></div><div class="row"><div></div><div></div><div></div></div><div class="audio"></div></div>`,
-  player:()=>`<div class="card main glow center" data-speed="-0.08"><div class="play"></div><div class="cc">Subtítulos</div></div><div class="card vertical" data-speed="-0.28"></div>`,
-  motion:()=>`<div class="card main" data-speed="-0.08"><div class="keys"><i></i><i></i><i></i><i></i><i></i></div><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span><span class="shape s4"></span></div>`,
-  rec:()=>`<div class="card main v-rec" data-speed="-0.08"><span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span><span class="rec">REC</span><span class="tc" data-tc>00:00:00</span><span class="cross"></span></div>`,
-  stage:()=>`<div class="card main v-stage" data-speed="-0.08"><span class="spot"></span><span class="rug"></span><span class="person"></span></div>`,
-  podvideo:()=>`<div class="card main glow center" data-speed="-0.08"><span class="live">EN VIVO</span><div class="mics">${micSvg}${micSvg}</div><div class="cc">Capítulo 1</div></div>`,
-  audio:()=>`<div class="card main glow" data-speed="-0.08"><div class="wave">${Array.from({length:28},(_,i)=>`<b style="--h:${30+Math.round(Math.abs(Math.sin(i*1.7))*65)}%;animation-delay:${(-i*0.11).toFixed(2)}s"></b>`).join('')}</div><div class="scrub"></div></div>`,
+  screen:()=>`<div class="card main v-screen" data-speed="-0.14" data-depth="0.6"><div class="bar"><b></b><b></b><b></b></div><div class="ttl"></div><div class="row"><div></div><div></div><div></div></div><div class="audio"></div></div>`,
+  player:()=>`<div class="card main glow center" data-speed="-0.14" data-depth="0.6"><div class="play"></div><div class="cc">Subtítulos</div></div><div class="card vertical" data-speed="-0.42" data-depth="1.4"></div>`,
+  motion:()=>`<div class="card main" data-speed="-0.14" data-depth="0.6"><div class="keys"><i></i><i></i><i></i><i></i><i></i></div><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span><span class="shape s4"></span></div>`,
+  rec:()=>`<div class="card main v-rec" data-speed="-0.14" data-depth="0.6"><span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span><span class="rec">REC</span><span class="tc" data-tc>00:00:00</span><span class="cross"></span></div>`,
+  stage:()=>`<div class="card main v-stage" data-speed="-0.14" data-depth="0.6"><span class="spot"></span><span class="rug"></span><span class="person"></span></div>`,
+  podvideo:()=>`<div class="card main glow center" data-speed="-0.14" data-depth="0.6"><span class="live">EN VIVO</span><div class="mics">${micSvg}${micSvg}</div><div class="cc">Capítulo 1</div></div>`,
+  audio:()=>`<div class="card main glow" data-speed="-0.14" data-depth="0.6"><div class="wave">${Array.from({length:28},(_,i)=>`<b style="--h:${30+Math.round(Math.abs(Math.sin(i*1.7))*65)}%;animation-delay:${(-i*0.11).toFixed(2)}s"></b>`).join('')}</div><div class="scrub"></div></div>`,
 };
 
 (() => {
@@ -325,12 +366,9 @@ const VISUAL = {
   PRODUCTOS.forEach((p, i) => {
     const rev = i % 2 === 1;
     const s = document.createElement('section');
-    s.id = 'p-' + p.id; s.dataset.label = p.nombre; s.style.setProperty('--c', p.color);
+    s.id = 'p-' + p.id; s.dataset.label = p.nombre; s.dataset.bg = p.color; s.style.setProperty('--c', p.color);
     const [w1, ...rest] = p.nombre.split(' ');
     s.innerHTML = `
-      <div class="layer bg" data-speed="0.3" style="--gx:${rev ? '15%' : '85%'}"></div>
-      <div class="layer grid-dots" data-speed="0.5" style="--gx:${rev ? '25%' : '75%'}"></div>
-      <div class="layer ring-bg" data-speed="0.6" style="${rev ? 'left:-220px' : 'right:-200px'}"></div>
       <div class="content product ${rev ? 'rev' : ''}">
         <div>
           <span class="tag reveal">Producto ${String(i + 1).padStart(2, '0')}</span>
@@ -340,7 +378,9 @@ const VISUAL = {
         </div>
         <div class="visual reveal d2" aria-hidden="true">
           ${VISUAL[p.visual]()}
-          ${(p.chips || []).map(([k, t], j) => `<div class="card chip c${j + 1}" data-speed="${-0.2 - j * 0.1}">${icon(k)}${t}</div>`).join('')}
+          ${(p.chips || []).map(([k, t], j) => `<div class="card chip c${j + 1}" data-speed="${(-0.3 - j * 0.14).toFixed(2)}" data-depth="${1 + j * 0.5}">${icon(k)}${t}</div>`).join('')}
+          <span class="float f1" data-speed="-0.6" data-depth="2.2"></span>
+          <span class="float f2" data-speed="-0.5" data-depth="1.8"></span>
         </div>
       </div>`;
     main.insertBefore(s, contacto);
@@ -362,6 +402,7 @@ const VISUAL = {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const sections = [...document.querySelectorAll('section')];
   const nav = document.querySelector('nav.dots');
+  const header = document.querySelector('header');
   const dots = sections.map(s => {
     const a = document.createElement('a');
     a.href = '#' + s.id; a.dataset.label = s.dataset.label; a.setAttribute('aria-label', s.dataset.label);
@@ -369,10 +410,20 @@ const VISUAL = {
     nav.appendChild(a); return a;
   });
   const bar = document.querySelector('.progress');
-  const movers = [...document.querySelectorAll('[data-speed]')].map(el => ({el, sec: el.closest('section'), k: parseFloat(el.dataset.speed)}));
+  const movers = [...document.querySelectorAll('[data-speed]')].map(el => ({el, sec: el.closest('section'), k: +el.dataset.speed, d: +(el.dataset.depth || 0)}));
+  const scene = document.getElementById('scene');
+  const orbs = [...scene.querySelectorAll('[data-orb]')];
+  const rings = [...scene.querySelectorAll('[data-ring]')];
+  const stars = [...scene.querySelectorAll('[data-star]')].map(el => ({el, k: +el.dataset.star}));
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  // Sección activa = la que contiene el centro de la ventana; también dispara el revelado
+  // Colores del fondo: se interpolan suavemente entre la sección actual y la siguiente
+  const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const cols = sections.map(s => hex(s.dataset.bg || '#3a6db5'));
+  const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',');
+  const root = document.documentElement.style;
+
+  // Sección activa = la que contiene el centro de la ventana
   let activeIdx = -1;
   function setActive(){
     const mid = innerHeight / 2;
@@ -385,21 +436,60 @@ const VISUAL = {
     history.replaceState(null, '', '#' + sections[i].id);
   }
 
-  // Parallax: cada capa se desplaza según la distancia de su sección al centro de la ventana
+  // Mouse: posición normalizada (-1..1) con suavizado
+  let mx = 0, my = 0, tx = 0, ty = 0;
+  if (!reduce && matchMedia('(hover:hover)').matches) {
+    addEventListener('pointermove', e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; request(); }, {passive:true});
+  }
+
   let ticking = false;
+  const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } };
   function frame(){
-    const vh = innerHeight, max = document.documentElement.scrollHeight - vh;
-    bar.style.width = (max > 0 ? scrollY / max * 100 : 0) + '%';
+    ticking = false;
+    const vh = innerHeight, y = scrollY, max = document.documentElement.scrollHeight - vh;
+    bar.style.width = (max > 0 ? y / max * 100 : 0) + '%';
+    header.classList.toggle('solid', y > 40);
     setActive();
-    if (!reduce) movers.forEach(({el, sec, k}) => {
+
+    // Progreso fraccional entre secciones -> degradado continuo de color
+    let f = 0;
+    for (let i = 0; i < sections.length; i++) {
+      const top = sections[i].offsetTop, h = sections[i].offsetHeight;
+      if (y + vh / 2 >= top) f = i + Math.min(1, (y + vh / 2 - top) / h);
+    }
+    f = Math.max(0, f - 0.5);
+    const i0 = Math.min(Math.floor(f), cols.length - 1), i1 = Math.min(i0 + 1, cols.length - 1), t = f - i0;
+    const ease = t * t * (3 - 2 * t);
+    root.setProperty('--sc', mix(cols[i0], cols[i1], ease));
+    root.setProperty('--sn', mix(cols[i1], cols[Math.min(i1 + 1, cols.length - 1)], ease));
+
+    if (reduce) return;
+    mx += (tx - mx) * 0.12; my += (ty - my) * 0.12;
+    if (Math.abs(tx - mx) > 0.002 || Math.abs(ty - my) > 0.002) request();
+
+    // Capas del fondo a distintas velocidades
+    stars.forEach(({el, k}) => { el.style.backgroundPosition = `${(-mx * 30 * k).toFixed(1)}px ${(-y * k - my * 30 * k).toFixed(1)}px`; });
+    orbs.forEach((el, i) => {
+      const s = [0.00045, 0.0006, 0.0008][i], a = [160, 220, 260][i];
+      const ox = Math.sin(y * s + i * 2) * a - mx * 40 * (i + 1);
+      const oy = Math.cos(y * s * 0.8 + i) * a * 0.6 - my * 30 * (i + 1);
+      el.style.transform = `translate3d(${ox.toFixed(1)}px,${oy.toFixed(1)}px,0)`;
+    });
+    rings.forEach((el, i) => {
+      const k = [0.12, 0.22][i];
+      el.style.transform = `translate3d(${(-mx * 25 * (i + 1)).toFixed(1)}px,${(Math.sin(y * 0.0007 + i) * 120 - my * 20).toFixed(1)}px,0) rotate(${(y * 0.01 * (i ? -1 : 1)).toFixed(2)}deg) scale(${(1 + Math.sin(y * k * 0.004) * 0.08).toFixed(3)})`;
+    });
+
+    // Elementos de contenido: scroll + mouse
+    movers.forEach(({el, sec, k, d}) => {
       const r = sec.getBoundingClientRect();
       if (r.bottom < -vh || r.top > vh * 2) return;
-      el.style.transform = `translate3d(0,${(((r.top + r.height / 2) - vh / 2) * k).toFixed(1)}px,0)`;
+      const off = ((r.top + r.height / 2) - vh / 2) * k;
+      el.style.transform = `translate3d(${(-mx * 18 * d).toFixed(1)}px,${(off - my * 14 * d).toFixed(1)}px,0)`;
     });
-    ticking = false;
   }
-  addEventListener('scroll', () => { setActive(); if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, {passive:true});
-  addEventListener('resize', frame);
+  addEventListener('scroll', () => { setActive(); request(); }, {passive:true});
+  addEventListener('resize', request);
   frame();
 
   // Teclado: flechas, AvPág/RePág, Inicio/Fin
