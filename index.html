@@ -289,6 +289,82 @@
   .eyebrow,.tag,ul.feats li,.chips a,.chip,.demo-bar,nav.dots a::after{font-weight:400}
   .eyebrow,.tag{font-style:italic}
   button,input,select,textarea{font-family:inherit}
+  /* ===================== v05 · estilo glass formal (referencia dialedweb) ===================== */
+  :root{--cyan:#89e5fa;--lav:#9489fa}
+  section{padding:96px clamp(14px,3vw,40px) 48px}
+  #contacto{padding-bottom:0}
+  .content{position:relative;padding:clamp(28px,4.5vw,64px);border-radius:28px;
+    background:linear-gradient(155deg,rgba(255,255,255,.065),rgba(255,255,255,.016) 55%,rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 40px 120px rgba(2,4,12,.45);
+    backdrop-filter:blur(26px) saturate(135%);-webkit-backdrop-filter:blur(26px) saturate(135%)}
+  .content::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+    background:radial-gradient(120% 70% at 0% 0%,rgba(137,229,250,.07),transparent 50%),radial-gradient(100% 70% at 100% 100%,rgba(148,137,250,.09),transparent 55%)}
+  .product::after{content:"";position:absolute;top:12%;bottom:12%;left:50%;width:1px;pointer-events:none;
+    background:linear-gradient(180deg,transparent,rgba(255,255,255,.16),transparent)}
+  #contacto .content{max-width:860px;flex:0 1 auto;margin-block:auto}
+
+  /* cabecera: barra de vidrio flotante */
+  header{inset:12px 0 auto 0;margin:0 auto;width:min(1180px,calc(100% - 28px));border-radius:18px;padding:10px 12px 10px 20px;
+    background:rgba(14,22,44,.42);border:1px solid rgba(255,255,255,.09);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 10px 40px rgba(0,0,0,.3);
+    backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%)}
+  header.solid{background:rgba(14,22,44,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 10px 40px rgba(0,0,0,.35)}
+  header.hide{transform:translateY(-140%)}
+  .brand img{height:clamp(26px,3vw,32px)}
+  .cta-top{padding:8px 18px;border-color:rgba(137,229,250,.45);color:#e3f8fe;background:rgba(137,229,250,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+  .cta-top:hover,.cta-top:focus-visible{background:rgba(137,229,250,.2);color:#fff}
+
+  /* tipografía más sobria */
+  h1,h2{font-weight:400;letter-spacing:-.025em;color:#eef1fb}
+  h1{line-height:1.06}
+  .eyebrow{color:#bfe9f6}
+  .eyebrow::before{background:linear-gradient(90deg,var(--cyan),var(--lav))}
+  .lead{color:#aeb6c8}
+  .ln-mask{padding-bottom:.08em;margin-bottom:-.08em}
+
+  /* botones píldora de vidrio */
+  .btn{border-radius:999px;padding:12px 22px;font-weight:400;letter-spacing:.01em;color:var(--ink);
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .3s var(--ease),border-color .3s}
+  .btn:hover{background:rgba(255,255,255,.11)}
+  .btn.primary,button.btn.primary{background:linear-gradient(135deg,rgba(137,229,250,.22),rgba(148,137,250,.22));border-color:rgba(137,229,250,.5);color:#e9fbff;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 30px rgba(137,229,250,.14)}
+  .btn.primary:hover{background:linear-gradient(135deg,rgba(137,229,250,.32),rgba(148,137,250,.32))}
+  .btn.primary .ic{stroke:#e9fbff}
+  .btn.primary .pend{color:#e9fbff;border-color:#e9fbff}
+
+  /* etiquetas y listas */
+  .tag{font-style:normal;letter-spacing:.14em;background:color-mix(in srgb,var(--c) 16%,rgba(255,255,255,.04));border-color:color-mix(in srgb,var(--c) 38%,rgba(255,255,255,.1))}
+  ul.feats{gap:14px 26px}
+  ul.feats li{align-items:center;color:#dfe3ee}
+  svg.ic{width:32px;height:32px;padding:7px;margin:0;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+    stroke:color-mix(in srgb,var(--c) 55%,#fff);filter:none}
+  .chip svg.ic,.btn svg.ic{width:20px;height:20px;padding:0;background:none;border:0;border-radius:0}
+  .chips a{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:#e3e7f1}
+  .chips a::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--c);margin-right:8px;box-shadow:0 0 8px var(--c);vertical-align:1px}
+  .chips a:hover,.chips a:focus-visible{background:rgba(255,255,255,.1);border-color:color-mix(in srgb,var(--c) 55%,transparent)}
+
+  /* tarjetas y detalles más sobrios */
+  .card{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.025));border-color:rgba(255,255,255,.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 24px 60px rgba(2,4,12,.45);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%)}
+  .main::after{background:conic-gradient(from var(--ang),transparent 0 70%,color-mix(in srgb,var(--c) 70%,#fff) 82%,transparent 92%);animation-duration:9s}
+  .float{opacity:.45}
+  .bignum{opacity:.22;-webkit-text-stroke:1px color-mix(in srgb,var(--c) 70%,#fff)}
+  .grain{opacity:.04}
+  .orbit .core{background:radial-gradient(circle at 35% 30%,#f2fbff,#a9e9fb 30%,#8fb0dc 55%,#6a64c9 85%,#2b2a6b);box-shadow:0 0 90px rgba(137,229,250,.35),inset -14px -18px 40px rgba(12,20,51,.55)}
+  .mq-row span{font-weight:300;font-size:clamp(1.3rem,2.8vw,2.3rem);color:#dfe5f2}
+  .mq-row.rev span{-webkit-text-stroke:1px rgba(148,137,250,.55)}
+  .mq-row svg{fill:var(--cyan);opacity:.8}
+  .cur.ring.hover{background:rgba(137,229,250,.12);border-color:var(--cyan)}
+  footer{background:rgba(12,20,40,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+
+  @media (max-width:900px){
+    section{padding:84px 34px 32px 12px}
+    .content{padding:26px 20px;border-radius:22px}
+    .product::after{display:none}
+    header{width:calc(100% - 20px);inset:10px 0 auto 0}
+  }
 </style>
 <script>document.documentElement.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduced' : 'motion');</script>
 </head>
@@ -323,7 +399,7 @@
     <div class="content hero-grid">
       <div class="hero-text">
         <p class="eyebrow">Productos digitales</p>
-        <h1 data-split>Capacitación que se <span class="blue">ve, se escucha</span> y se recorre.</h1>
+        <h1>Capacitación que se <span class="blue">ve, se escucha</span> y se recorre.</h1>
         <p class="lead">Cursos e-learning, video, motion graphics, charlas y podcast para formar a tus equipos.</p>
         <nav class="chips" aria-label="Productos" id="chips"></nav>
       </div>
@@ -346,7 +422,7 @@
   <section id="contacto" data-label="Contacto" data-bg="#2f5ea3" style="--c:#8fb0dc">
     <div class="content">
       <p class="eyebrow" style="justify-content:center">Conversemos</p>
-      <h2 data-split>¿Qué necesita aprender <span class="nw"><span class="blue">tu equipo</span>?</span></h2>
+      <h2>¿Qué necesita aprender <span class="nw"><span class="blue">tu equipo</span>?</span></h2>
       <p class="lead">Cuéntanos el tema y el público, y te proponemos el formato más adecuado.</p>
       <div class="btns">
         <a class="btn primary" href="#" data-pending data-magnetic>Escribir <span class="pend">[CORREO]</span></a>
@@ -377,39 +453,39 @@
 <script>
 /* ===== Contenido: editar aquí productos, textos, colores y orden ===== */
 const PRODUCTOS = [
-  { id:'elearning', nombre:'Cursos e-learning', color:'#3f7cff', visual:'screen',
+  { id:'elearning', nombre:'Cursos e-learning', color:'#7aa7ff', visual:'screen',
     lead:'Cursos interactivos en formato web, empaquetados en SCORM 1.2 para cargarlos en tu plataforma LMS.',
     feats:[['wave','Locución sincronizada y subtítulos (CC)'],['check','Actividades: alternativas, V/F, arrastrar y ordenar'],
            ['star','Evaluación con intentos y retroalimentación'],['resume','Reanudación donde el alumno quedó'],
            ['devices','Responsivo: computador, tablet y móvil'],['down','Paquete SCORM 1.2 para LMS']],
     chips:[['check','Revisado'],['cc','CC activados']],
     demo:{ href:'demo-arauco-cultura/index.html', version:'Demo v0.1', titulo:'Cultura Mapuche y Territorio', etiqueta:'Demo navegable · 10 láminas', imagen:'assets/demo-arauco-portada.jpg' } },
-  { id:'capsulas', nombre:'Cápsulas de video', color:'#ff5f7a', visual:'player',
+  { id:'capsulas', nombre:'Cápsulas de video', color:'#ef8ea0', visual:'player',
     lead:'Videos breves para explicar un tema, reforzar un procedimiento o comunicar un mensaje a tus equipos.',
     feats:[['doc','Guion a partir de tu contenido'],['mic','Locución y música'],['image','Gráficos y animación de apoyo'],
            ['cc','Subtítulos incorporados'],['formats','Formato horizontal y vertical'],['arrow','Listas para LMS, web o redes']],
     chips:[['clock','Formato breve']] },
-  { id:'motion', nombre:'Motion graphics', color:'#a46bff', visual:'motion',
+  { id:'motion', nombre:'Motion graphics', color:'#a99cff', visual:'motion',
     lead:'Animaciones que convierten datos, procesos y conceptos en piezas visuales claras.',
     feats:[['chart','Infografías y datos animados'],['flow','Procesos explicados paso a paso'],['type','Títulos y rótulos animados'],
            ['spark','Logos e identidad en movimiento'],['image','Íconos y personajes animados'],['formats','Formatos para pantalla y redes']],
     chips:[['spark','Animación 2D']] },
-  { id:'terreno', nombre:'Grabación en terreno', color:'#2fbf8f', visual:'rec',
+  { id:'terreno', nombre:'Grabación en terreno', color:'#6fd3b0', visual:'rec',
     lead:'Registramos en tu faena, planta u oficina: procedimientos, testimonios y entornos reales de trabajo.',
     feats:[['flow','Registro de procedimientos'],['user','Entrevistas y testimonios'],['camera','Tomas de apoyo del entorno'],
            ['mic','Captura de audio en sitio'],['cut','Edición y postproducción'],['arrow','Material para cursos y cápsulas']],
     chips:[['pin','En tu lugar de trabajo']] },
-  { id:'ted', nombre:'Charlas TED', color:'#e8483b', visual:'stage',
+  { id:'ted', nombre:'Charlas TED', color:'#ee8b80', visual:'stage',
     lead:'Charlas breves de un experto o líder frente a cámara, con puesta en escena y una narrativa cuidada.',
     feats:[['doc','Guion y estructura de la charla'],['user','Preparación del expositor'],['light','Escenario e iluminación'],
            ['camera','Grabación en video'],['image','Apoyo visual y gráficos'],['cut','Edición final']],
     chips:[['user','Un mensaje, una idea']] },
-  { id:'podvideo', nombre:'Podcast video', color:'#f39a2b', visual:'podvideo',
+  { id:'podvideo', nombre:'Podcast video', color:'#efb676', visual:'podvideo',
     lead:'Conversaciones grabadas en video para profundizar temas con expertos de tu organización.',
     feats:[['users','Formato conversación o entrevista'],['camera','Grabación con cámaras y micrófonos'],['list','Edición por capítulos'],
            ['cut','Clips cortos para difusión'],['cc','Subtítulos'],['arrow','Publicación en LMS, YouTube o redes']],
     chips:[['users','Conversación']] },
-  { id:'podaudio', nombre:'Podcast audio', color:'#22b8cf', visual:'audio',
+  { id:'podaudio', nombre:'Podcast audio', color:'#89e5fa', visual:'audio',
     lead:'Episodios de audio para aprender en cualquier momento: en el trayecto, en terreno o en la oficina.',
     feats:[['doc','Guion o pauta de conversación'],['mic','Locución y entrevistas'],['wave','Música y cortinas'],
            ['sliders','Edición y masterización de audio'],['list','Episodios por temporada'],['arrow','Distribución en LMS o plataformas de podcast']],
@@ -478,7 +554,7 @@ PRODUCTOS.forEach((p, i) => {
     <div class="content product ${rev ? 'rev' : ''}">
       <div class="text">
         <span class="tag">Producto ${num}</span>
-        <h2 data-split>${w1} <span class="hl">${rest.join(' ')}</span></h2>
+        <h2>${w1} <span class="hl">${rest.join(' ')}</span></h2>
         <p class="lead">${p.lead}</p>
         <ul class="feats">${p.feats.map(([k, t]) => `<li>${icon(k)}${t}</li>`).join('')}</ul>
         ${p.demo ? `<div class="btns"><button type="button" class="btn primary" data-demo="${p.id}" data-magnetic>${icon('play')}Navegar demo</button><a class="btn" href="${p.demo.href}" target="_blank" rel="noopener" data-magnetic>${icon('external')}Abrir en pestaña nueva</a></div>` : ''}
@@ -586,9 +662,9 @@ document.getElementById('y').textContent = new Date().getFullYear();
         vec2 r=vec2(fbm(p*1.3+2.*q+vec2(1.7,9.2+uS)+t*.6),fbm(p*1.3+2.*q+vec2(8.3,2.8)-t*.4));
         float f=fbm(p*1.2+2.4*r);
         vec3 col=vec3(.027,.043,.078);
-        col=mix(col,uA*.62,smoothstep(.38,.95,f));
-        col=mix(col,uB*.5,smoothstep(.5,1.,r.x)*.75);
-        col+=vec3(.43,.55,.69)*.12*smoothstep(.62,1.,q.y);
+        col=mix(col,uA*.46,smoothstep(.38,.95,f));
+        col=mix(col,uB*.36,smoothstep(.5,1.,r.x)*.75);
+        col+=vec3(.54,.90,.98)*.06*smoothstep(.62,1.,q.y);col+=vec3(.58,.54,.98)*.08*smoothstep(.55,1.,r.y);
         col*=.5+.5*smoothstep(1.3,.3,length(uv-vec2(.55,.55)));
         gl_FragColor=vec4(col,1.);
       }`;
@@ -702,13 +778,13 @@ document.getElementById('y').textContent = new Date().getFullYear();
   if (!hasGSAP || reduce) { intro.remove(); return; }
 
   /* ================= Animaciones GSAP ================= */
+  document.fonts.ready.then(() => {
   gsap.registerPlugin(ScrollTrigger, SplitText);
   const W = () => innerWidth, H = () => innerHeight;
-  const R = gsap.utils.random;
-  const splits = new Map();
-  document.querySelectorAll('[data-split]').forEach(el => splits.set(el, SplitText.create(el, {type: 'words,chars', wordsClass: 'wd', charsClass: 'ch', aria: 'auto'})));
+  // Títulos y párrafos se dividen por LÍNEAS (con máscara): cada línea sube desde su propia ranura
+  const lines = el => SplitText.create(el, {type: 'lines', mask: 'lines', linesClass: 'ln', aria: 'auto'}).lines;
 
-  /* ---- Cursor y microinteracciones (solo mouse) ---- */
+  /* ---- Cursor y microinteracciones sobrias (solo mouse) ---- */
   if (fine) {
     document.documentElement.classList.add('has-cursor');
     const dot = document.querySelector('.cur.dot'), ring = document.querySelector('.cur.ring');
@@ -717,79 +793,74 @@ document.getElementById('y').textContent = new Date().getFullYear();
     addEventListener('pointermove', e => { dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); });
     document.addEventListener('pointerover', e => ring.classList.toggle('hover', !!e.target.closest('a,button,.visual')));
 
-    // botones magnéticos
     document.querySelectorAll('[data-magnetic]').forEach(el => {
       el.addEventListener('pointermove', e => {
         const b = el.getBoundingClientRect();
-        gsap.to(el, {x: (e.clientX - b.left - b.width / 2) * .35, y: (e.clientY - b.top - b.height / 2) * .45, duration: .4, ease: 'power3', overwrite: 'auto'});
+        gsap.to(el, {x: (e.clientX - b.left - b.width / 2) * .18, y: (e.clientY - b.top - b.height / 2) * .25, duration: .5, ease: 'power3', overwrite: 'auto'});
       });
-      el.addEventListener('pointerleave', () => gsap.to(el, {x: 0, y: 0, duration: .8, ease: 'elastic.out(1,.4)', overwrite: 'auto'}));
+      el.addEventListener('pointerleave', () => gsap.to(el, {x: 0, y: 0, duration: .7, ease: 'power3.out', overwrite: 'auto'}));
     });
 
-    // inclinación 3D con brillo en las ilustraciones
     document.querySelectorAll('.visual').forEach(v => {
-      gsap.set(v, {transformPerspective: 1000});
+      gsap.set(v, {transformPerspective: 1200});
       v.addEventListener('pointermove', e => {
         const b = v.getBoundingClientRect(), px = (e.clientX - b.left) / b.width, py = (e.clientY - b.top) / b.height;
         v.style.setProperty('--gx', px * 100 + '%'); v.style.setProperty('--gy', py * 100 + '%');
-        gsap.to(v, {rotationY: (px - .5) * 14, rotationX: -(py - .5) * 10, duration: .6, ease: 'power3', overwrite: 'auto'});
+        gsap.to(v, {rotationY: (px - .5) * 8, rotationX: -(py - .5) * 6, duration: .8, ease: 'power3', overwrite: 'auto'});
       });
-      v.addEventListener('pointerleave', () => gsap.to(v, {rotationY: 0, rotationX: 0, duration: 1, ease: 'elastic.out(1,.5)', overwrite: 'auto'}));
+      v.addEventListener('pointerleave', () => gsap.to(v, {rotationY: 0, rotationX: 0, duration: 1, ease: 'power3.out', overwrite: 'auto'}));
     });
   }
 
-  /* ---- Cinta: se inclina con la velocidad del scroll ---- */
-  const mq = document.querySelector('.marquee'), skew = gsap.quickTo(mq, 'skewX', {duration: .5, ease: 'power3'});
-  if (lenis) lenis.on('scroll', ({velocity}) => skew(gsap.utils.clamp(-12, 12, -velocity * 0.6)));
+  /* ---- Cinta: leve inclinación según velocidad ---- */
+  const mq = document.querySelector('.marquee'), skew = gsap.quickTo(mq, 'skewX', {duration: .6, ease: 'power3'});
+  if (lenis) lenis.on('scroll', ({velocity}) => skew(gsap.utils.clamp(-6, 6, -velocity * 0.3)));
 
-  /* ---- Piezas que llegan desde afuera: utilidades ---- */
-  const charsFrom = () => ({
-    x: () => R(-W() * .45, W() * .45), y: () => R(-H() * .5, H() * .5),
-    rotation: () => R(-120, 120), scale: () => R(.3, 2.2), opacity: 0, stagger: {each: .012, from: 'random'}
-  });
-
-  /* ---- Hero: se arma al cargar y se dispersa al salir ---- */
+  /* ---- Hero: entra al cargar, ordenado por líneas ---- */
   const hero = document.getElementById('inicio');
-  const heroTl = gsap.timeline({paused: true, defaults: {ease: 'expo.out', duration: 1.6}});
+  const heroTl = gsap.timeline({paused: true, defaults: {ease: 'expo.out', duration: 1.4}});
   heroTl
-    .from(hero.querySelector('.eyebrow'), {x: () => -W() * .6, opacity: 0}, 0)
-    .from(splits.get(hero.querySelector('h1')).chars, {...charsFrom(), duration: 1.8}, .05)
-    .from(hero.querySelector('.lead'), {x: () => -W() * .7, opacity: 0, filter: 'blur(12px)'}, .35)
-    .from(hero.querySelectorAll('.chips a'), {y: () => H() * .7, x: () => R(-W() * .3, W() * .3), rotation: () => R(-40, 40), opacity: 0, stagger: .06}, .5)
-    .from(hero.querySelector('.orbit'), {x: () => W() * .6, scale: .2, rotation: 160, opacity: 0, duration: 2}, .15)
-    .from('header', {y: -90, opacity: 0, duration: 1.2, clearProps: 'transform,opacity'}, .4)
+    .from(hero.querySelector('.eyebrow'), {x: -40, opacity: 0}, 0)
+    .from(lines(hero.querySelector('h1')), {yPercent: 110, stagger: .12, duration: 1.3}, .1)
+    .from(lines(hero.querySelector('.lead')), {yPercent: 110, stagger: .08}, .45)
+    .from(hero.querySelectorAll('.chips a'), {y: 24, opacity: 0, stagger: .05, duration: 1}, .7)
+    .from(hero.querySelector('.content'), {opacity: 0, y: 40, duration: 1.6}, 0)
+    .from(hero.querySelector('.orbit'), {x: () => W() * .15, scale: .7, opacity: 0, duration: 1.8}, .2)
+    .from('header', {y: -30, opacity: 0, duration: 1.2, clearProps: 'transform,opacity'}, .3)
     .from(nav, {opacity: 0, duration: 1.2, clearProps: 'opacity'}, .6)
-    .from(hero.querySelector('.scroll-hint'), {y: 40, opacity: 0, duration: 1}, 1.1);
+    .from(hero.querySelector('.scroll-hint'), {y: 20, opacity: 0, duration: 1}, 1.1);
 
   gsap.timeline({scrollTrigger: {trigger: hero, start: 'top top', end: 'bottom top', scrub: 1}})
-    .to(hero.querySelector('.hero-text'), {x: () => -W() * .25, y: () => -H() * .1, opacity: 0, ease: 'power1.in'}, 0)
-    .to(hero.querySelector('.orbit-wrap'), {x: () => W() * .3, scale: 1.4, rotation: 40, opacity: 0, ease: 'power1.in'}, 0)
+    .to(hero.querySelector('.hero-text'), {y: () => -H() * .12, opacity: 0, ease: 'power1.in'}, 0)
+    .to(hero.querySelector('.orbit-wrap'), {x: () => W() * .12, scale: 1.1, opacity: 0, ease: 'power1.in'}, 0)
     .to(hero.querySelector('.scroll-hint'), {opacity: 0, duration: .2}, 0);
 
-  /* ---- Productos: cada pieza viaja desde fuera de la pantalla hasta su lugar, ligada al scroll ---- */
+  /* ---- Productos: el panel de vidrio llega, luego el texto por líneas y frases, y la ilustración desde su lado ---- */
   document.querySelectorAll('section[id^="p-"]').forEach(sec => {
     const rev = !!sec.dataset.rev;
-    const ts = rev ? 1 : -1;   // lado del texto (desde donde entra)
+    const ts = rev ? 1 : -1;   // lado del texto
     const vs = -ts;            // lado de la ilustración
-    const tl = gsap.timeline({defaults: {ease: 'none'}, scrollTrigger: {trigger: sec, start: 'top 95%', end: 'top 15%', scrub: 1.2, invalidateOnRefresh: true}});
-    tl.from(sec.querySelector('.bignum'), {xPercent: vs * 120, opacity: 0, rotation: vs * 12}, 0)
-      .from(sec.querySelector('.tag'), {x: () => ts * W() * .6, opacity: 0, rotation: ts * -10}, 0)
-      .from(splits.get(sec.querySelector('h2')).chars, charsFrom(), .05)
-      .from(sec.querySelector('.lead'), {x: () => ts * W() * .8, opacity: 0, filter: 'blur(10px)'}, .15)
-      .from(sec.querySelectorAll('.text .btn'), {y: () => H() * .6, x: (i) => (i ? 1 : -1) * W() * .2, rotation: (i) => (i ? 12 : -12), opacity: 0, stagger: .06}, .35)
-      .from(sec.querySelectorAll('.feats li'), {x: (i) => (i % 2 ? 1 : -1) * W() * .8, y: () => R(-80, 120), rotation: (i) => (i % 2 ? 8 : -8), opacity: 0, stagger: .05}, .25)
-      .from(sec.querySelector('.card.main'), {x: () => vs * W() * .75, y: () => H() * .25, rotationY: vs * -60, rotationZ: vs * 12, scale: .5, opacity: 0, transformPerspective: 1100}, .05)
-      .from(sec.querySelectorAll('.chip, .x-card'), {x: () => vs * W() * .9, y: (i) => (i % 2 ? 1 : -1) * H() * .7, rotation: () => R(-35, 35), opacity: 0, stagger: .08}, .2)
-      .from(sec.querySelectorAll('.float'), {x: () => R(-W(), W()), y: () => R(-H(), -H() * .4), scale: 4, opacity: 0, stagger: .05}, .1);
+    const tl = gsap.timeline({defaults: {ease: 'power2.out'}, scrollTrigger: {trigger: sec, start: 'top 92%', end: 'top 22%', scrub: 1, invalidateOnRefresh: true}});
+    tl.from(sec.querySelector('.content'), {y: () => H() * .18, opacity: 0, scale: .96}, 0)
+      .from(sec.querySelector('.bignum'), {xPercent: vs * 30, opacity: 0}, 0)
+      .from(sec.querySelector('.tag'), {x: () => ts * 60, opacity: 0}, .1)
+      .from(lines(sec.querySelector('h2')), {yPercent: 110, stagger: .08}, .15)
+      .from(lines(sec.querySelector('.lead')), {yPercent: 110, stagger: .05}, .3)
+      .from(sec.querySelectorAll('.feats li'), {x: () => ts * W() * .12, opacity: 0, stagger: .04}, .4)
+      .from(sec.querySelectorAll('.text .btn'), {y: 30, opacity: 0, stagger: .06}, .6)
+      .from(sec.querySelector('.card.main'), {x: () => vs * W() * .3, rotationY: vs * -18, opacity: 0, transformPerspective: 1400}, .2)
+      .from(sec.querySelectorAll('.chip, .x-card'), {x: () => vs * W() * .18, opacity: 0, stagger: .08}, .45)
+      .from(sec.querySelectorAll('.float'), {scale: .2, opacity: 0, stagger: .06}, .5);
   });
 
   /* ---- Contacto ---- */
-  const ct = gsap.timeline({defaults: {ease: 'none'}, scrollTrigger: {trigger: contacto, start: 'top 95%', end: 'top 20%', scrub: 1.2, invalidateOnRefresh: true}});
-  ct.from(contacto.querySelector('.eyebrow'), {y: () => -H() * .4, opacity: 0}, 0)
-    .from(splits.get(contacto.querySelector('h2')).chars, charsFrom(), .05)
-    .from(contacto.querySelector('.lead'), {y: () => H() * .5, opacity: 0, filter: 'blur(10px)'}, .2)
-    .from(contacto.querySelectorAll('.btn'), {x: (i) => (i ? 1 : -1) * W() * .6, rotation: (i) => (i ? 20 : -20), opacity: 0}, .3)
-    .from(contacto.querySelector('footer'), {yPercent: 100, opacity: 0}, .4);
+  const ct = gsap.timeline({defaults: {ease: 'power2.out'}, scrollTrigger: {trigger: contacto, start: 'top 92%', end: 'top 25%', scrub: 1, invalidateOnRefresh: true}});
+  ct.from(contacto.querySelector('.content'), {y: () => H() * .18, opacity: 0, scale: .96}, 0)
+    .from(contacto.querySelector('.eyebrow'), {y: 20, opacity: 0}, .1)
+    .from(lines(contacto.querySelector('h2')), {yPercent: 110, stagger: .1}, .15)
+    .from(lines(contacto.querySelector('.lead')), {yPercent: 110, stagger: .06}, .3)
+    .from(contacto.querySelectorAll('.btn'), {y: 30, opacity: 0, stagger: .08}, .45)
+    .from(contacto.querySelector('footer'), {yPercent: 100, opacity: 0}, .5);
 
   /* ---- Intro: el logo se dibuja y la cortina sube ---- */
   const start = () => {
@@ -803,6 +874,7 @@ document.getElementById('y').textContent = new Date().getFullYear();
   if (scrollY > innerHeight * .5) { intro.remove(); heroTl.progress(1); }   // si se recarga a mitad de página
   else if (document.readyState === 'complete') start(); else addEventListener('load', start);
   addEventListener('load', () => ScrollTrigger.refresh());
+  });
 })();
 </script>
 </body>
